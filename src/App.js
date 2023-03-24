@@ -1,15 +1,22 @@
-import './App.css';
-import Container from './components/Container';
+import React, { useState } from 'react';
 import Header from './components/Header';
-import SearchBar from './components/SearchBar';
-import CardMovie from './components/CardMovie'
-import CardSelected from './components/CardSelected'
+import CardMovie from './components/CardMovie';
+import AddMovie from './components/AddMovie';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
-    <Container className="bg-black h-screen w-screen flex">
-      <CardMovie/>
-    </Container>
+    <BrowserRouter>
+    <div className="App">
+      <Header setSearchQuery={setSearchQuery} />
+      <Routes>
+        <Route path="/" element={<CardMovie searchQuery={searchQuery} />} />
+        <Route path="/AddMovie" element={<AddMovie addMovie={console.log} />} />
+      </Routes>
+    </div>
+    </BrowserRouter>
   );
 }
 

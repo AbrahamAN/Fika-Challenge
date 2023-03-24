@@ -10,7 +10,7 @@ import {
   } from "@heroicons/react/24/solid";
   import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
    
-  const CardSelected = ({onClose}) => {
+  const CardSelected = ({onClose, genre, castCrew, releaseDate, rating}) => {
 
 
     const [showCard, setShowCard] = useState(true);
@@ -25,27 +25,27 @@ import {
     }
 
     return (
-      <Card  className="h-3/4 absolute w-full text-white  shadow-lg z-20 bg-black bg-opacity-40">
+      <Card  className="h-2/4 absolute w-full text-white bottom-10 shadow-lg z-20 bg-black bg-opacity-40">
         <div className="flex justify-end w-full p-2">
           <FontAwesomeIcon className="cursor-pointer"  icon={faXmark} onClick={handleHideCard} />
         </div>
         <CardBody >
           <div className="mb-3 flex flex-col gap-5 items-center justify-between">
             <Typography variant="h5" color="blue-gray" className="font-medium">
-              Genre
+              {genre}
             </Typography>
             <Typography variant="h5" color="blue-gray" className="font-medium">
-              Cast & Crew
+              {castCrew}
             </Typography>
             <Typography variant="h5" color="blue-gray" className="font-medium">
-              Release Date
+              {releaseDate}
             </Typography>
             <Typography
               color="blue-gray"
               className="flex items-center gap-1.5 font-normal"
             >
               <StarIcon className="-mt-0.5 h-5 w-5 text-yellow-700" />
-              5.0
+              {rating}
             </Typography>
           </div>
         </CardBody>
