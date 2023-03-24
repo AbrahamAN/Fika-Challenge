@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { Card, CardBody, CardFooter, Typography } from "@material-tailwind/react";
+import {  CardBody, Typography } from "@material-tailwind/react";
 import CardSelected from "./CardSelected";
-import { Button } from "@material-tailwind/react";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import VideoBackground from "./VideoBackground";
 
-const CardMovie = ({ className, searchQuery,}) => {
+const CardMovie = ({ searchQuery,}) => {
   const [movies, setMovies] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 5;
 
   useEffect(() => {
     async function fetchMovie() {
@@ -57,59 +57,48 @@ const CardMovie = ({ className, searchQuery,}) => {
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
+  console.log(selectedCard)
+
   return (
-    <div>
-      <div className="grid-cols-4 grid">
+    <>
+    <VideoBackground className="h-screen w-screen "/>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  min-h-screen pb-20 items-center">
       {paginatedMovies.map((movie) => (
-        <Card
-          key={movie.id}
-          className={`p-10 bg-sky-500 m-5 rounded relative ${className}`}
-        >
-          <CardBody className=" flex-col justify-center items-center flex">
-            <Typography className="font-bold text-white" >
-              {movie.title}
-            </Typography>
-            <img src={movie.img} alt="logo" className="w-60 h-80" />
-            {selectedCard === movie.id && (
-              <CardSelected
-                castCrew={movie.castCrew}
-                genre={movie.genre}
-                releaseDate={movie.releaseDate}
-                rating={movie.rating}
-                onClose={() => setSelectedCard(null)}
+        <div key={movie.id} className="p-10  bg-orionColor bg-opacity-95 m-5 rounded h-3/8  cursor-pointer hover:transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+          <div className="relative">
+            <CardBody onClick={() => handleSeeMoreDetails(movie.id)} className="flex-col justify-center items-center flex">
+              <Typography className="font-bold text-white mb-5">{movie.title}</Typography>
+              <img src={movie.img} alt="logo" className="w-full rounded-xl h-96" />
+            </CardBody>
+            <CardSelected
+              movie={movie}
+              open={selectedCard === movie.id}
+              onClose={() => setSelectedCard(null)}
+            />
+            <div className="flex justify-end w-full p-2 z-10 absolute bottom-0 left-0">
+              <FontAwesomeIcon
+                className="cursor-pointer text-red-500"
+                icon={faTrash}
+                onClick={() => handleDeleteMovie(movie.id)}
               />
-            )}
-          </CardBody>
-          <CardFooter className="absolute bottom-1 left-9 m-auto w-3/4  z-50 bg-blue-800 hover:bg-blue-900 text-white  cursor-pointer  border rounded ">
-            <Button
-              className="font-bold text-base w-full"
-              onClick={() => handleSeeMoreDetails(movie.id)}
-            >
-              See More Details
-            </Button>
-          </CardFooter>
-          <div className="flex justify-end w-full p-2 z-10 absolute bottom-0 left-0">
-          <FontAwesomeIcon
-            className="cursor-pointer text-red-500"
-            icon={faTrash}
-            onClick={() => handleDeleteMovie(movie.id)}
-          />
+            </div>
           </div>
-        </Card>
+        </div>
       ))}
+
       </div>
-      <div className="flex justify-center mt-4 w-screen mb-5">
+      <div className="flex justify-center  w-screen bg-black bg-opacity-90 pb-5 pt-5 ">
         {Array.from({ length: numberOfPages }, (_, i) => i + 1).map((pageNumber) => (
           <button
             key={pageNumber}
             onClick={() => handlePageChange(pageNumber)}
-            className={` mx-1 p-2 border rounded text-base ${pageNumber === currentPage ? 'bg-blue-600 text-white' : ''}`}
+            className={`mx-1 p-2 text-white border rounded text-base ${pageNumber === currentPage ? 'bg-blue-600 text-white' : ''}`}
           >
             {pageNumber}
           </button>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

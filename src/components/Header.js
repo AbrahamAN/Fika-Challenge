@@ -25,21 +25,21 @@ const Header = ({ className, setSearchQuery }) => {
   };
 
   const navList = (
-    <div className="flex justify-around lg:w-96 w-36">
-      <ul className=" mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-        <Typography as="li" variant="small" color="blue-gray" className="p-1 font-normal">
+    <div className="flex justify-around lg:w-96 w-screen absolute bg-white lg:bg-transparent z-50 right-0">
+      <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+        <li className="p-1 font-normal text-orionColor hover:text-orionGreen transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
           <Link to="/">Home</Link>
-        </Typography>
-        <Typography as="li" variant="small" color="blue-gray" className="p-1 font-normal">
+        </li>
+        <li className="p-1 font-normal text-orionColor hover:text-orionGreen transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
           <Link to="/AddMovie">Add Movies</Link>
-        </Typography>
+        </li>
       </ul>
     </div>
   );
 
   return (
     <Navbar
-      className={`bg-white text-black w-screen border-none rounded-none h-20  py-2 px-4 lg:px-8 lg:py-4 ${className}`}
+      className={`bg-white text-black w-full border-none rounded-none mr-20 h-20 py-2 px-4 lg:px-8 lg:py-4 ${className}`}
     >
       <div className="container mx-auto flex items-center justify-around text-blue-gray-900">
         <div className="flex w-full items-center">
@@ -89,8 +89,8 @@ const Header = ({ className, setSearchQuery }) => {
           )}
         </IconButton>
       </div>
-      <MobileNav open={openNav}>
-        <div className=" container mx-auto">
+      <MobileNav  open={openNav}>
+        <div className="container mx-auto">
           {navList}
         </div>
       </MobileNav>

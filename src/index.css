@@ -16,3 +16,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+button.relative.align-middle.select-none.font-sans.font-medium.text-center.uppercase.transition-all.disabled\:opacity-50.disabled\:shadow-none.disabled\:pointer-events-none.max-w-\[40px\].max-h-\[40px\].rounded-lg.text-xs.ml-auto.h-6.w-6.text-inherit.hover\:bg-transparent.focus\:bg-transparent.active\:bg-transparent.lg\:hidden {
+  width: 4.5rem!;
+}
