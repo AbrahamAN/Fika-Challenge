@@ -15,7 +15,7 @@ import {
     }
 
     return (
-      <Card className="h-2/8 absolute w-full text-white bottom-10 shadow-lg z-20  bg-opacity-80">
+      <Card className="h-2/8 absolute w-full bg-black bg-opacity-70 text-white bottom-10 shadow-lg z-20  bg-opacity-80">
         <div className="flex justify-end w-full p-2">
           <FontAwesomeIcon className="cursor-pointer" icon={faXmark} onClick={onClose} />
         </div>
